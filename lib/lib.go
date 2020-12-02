@@ -23,3 +23,20 @@ func ReadAllLineToInt(filepath string) ([]int, error) {
 	}
 	return result, nil
 }
+
+func ReadAllLineToString(filepath string) ([]string, error) {
+	file, err := os.Open(filepath)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close() // Stack qui s'execute après la destruction du contexte de la fonction courante
+	s := bufio.NewScanner(file)
+	var result []string
+	for s.Scan() {
+		if err != nil {
+			return nil, err
+		}
+		result = append(result, s.Text())
+	}
+	return result, nil
+}

@@ -33,9 +33,9 @@ func Part2(target int) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	for i, x := range t[:len(t)-2] {
-		for j, y := range t[i : len(t)-1] {
-			for _, z := range t[j:len(t)] {
+	for i, x := range t[:len(t)] {
+		for j, y := range t[i+1 : len(t)] {
+			for _, z := range t[j+2 : len(t)] {
 				if x+y+z == target {
 					return strconv.Itoa(x * y * z), nil
 				}
